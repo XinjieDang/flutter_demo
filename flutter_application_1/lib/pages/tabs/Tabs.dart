@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'Category.dart';
-import 'Home.dart';
+import 'category.dart';
+import 'home.dart';
 import 'setting.dart';
 
 class Tabs extends StatefulWidget {
@@ -26,20 +26,18 @@ class _TabsState extends State<Tabs> {
       ),
       // ignore: unnecessary_this
       body: this._pageList[this._currentIndex],
-      //底部tabaar
+      //底部tabaar,配置底部tabs 可以有多个按钮
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         // ignore: prefer_const_literals_to_create_immutables
         //当前选中的索引
         // ignore: unnecessary_this
         currentIndex: this._currentIndex,
-        // ignore: prefer_const_literals_to_create_immutables
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.business), title: Text('Business')),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.school), title: Text('School')),
+              icon: Icon(Icons.business), label: 'Business'),
+          BottomNavigationBarItem(icon: Icon(Icons.school), label: 'School'),
         ],
         //当tabbar 点击时
         onTap: (tappedIndex) {
@@ -49,6 +47,8 @@ class _TabsState extends State<Tabs> {
             this._currentIndex = tappedIndex;
           });
         },
+        //选中颜色
+        fixedColor: Colors.red,
       ),
     );
   }
