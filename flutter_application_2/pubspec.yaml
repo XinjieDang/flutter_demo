@@ -1,0 +1,29 @@
+name: flutter_application_2 #应用或包名称
+description: A new Flutter project. #应用或包的描述，简介
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1 #应用或包的版本号
+
+environment:
+  sdk: ">=2.17.6 <3.0.0"
+dependencies: #应用或包依赖的其他包或者插件
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  #添加屏幕适配依赖
+  flutter_screenutil: ^3.1.0
+  #显示随机字符串
+  english_words: ^4.0.0
+
+dev_dependencies: #开发环境依赖的工具包，不是flutte 本身依赖的包
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter: #flutter 相关配置选项
+  uses-material-design: true
+  #引入本地图片
+  assets:
+    - lib/assets/images/
+
+  #如果flutter 应用本身依赖某个包，我们需要将所依赖的包添加到 dependencies 下
+  # pub 仓库 是google 官方的dart packages仓库，类似于 node 中npm 仓库，可以在 Pub 上查找需要的包和插件，也可以发布包
