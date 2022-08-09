@@ -1,5 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_5/http/dio_method.dart';
+import 'package:flutter_application_5/http/dio_response.dart';
+import 'package:flutter_application_5/http/dio_util.dart';
 import 'package:flutter_application_5/models/School_model.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,6 +15,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   // 列表数组模型初始化
   List<SchoolItem> _choolList = SchoolList([]).list;
+
+  //CancelToken _cancelToken = CancelToken();
   @override
   void initState() {
     super.initState();
@@ -20,10 +25,25 @@ class _HomePageState extends State<HomePage> {
 
   //请求驾校数据
   Future<void> getschoolDate() async {
-    Dio dio = Dio();
-    Response response = await dio.get("http://10.0.2.2:8080/miniapp/login",
-        queryParameters: {"loginCode": 111111});
-    print(response.data);
+    // Dio dio = Dio();
+    // Response response = await dio.get("http://10.0.2.2:8080/miniapp/login",
+    //     queryParameters: {"loginCode": 111111});
+    // print(response.data);
+    //使用封装的请求工具类
+    //DioUtil.getInstance()?.openLog();
+    //获取数据
+    DioResponse result =
+        await DioUtil().request("/checkin/school", method: DioMethod.get);
+
+    print("返回的数==================================$result.data.rows");
+
+    // List<dynamic> schoolList = result.data['rows'];
+    //SchoolList songListModel = SchoolList.fromJson(schoolList);
+
+    //将数据转为实体
+    setState(() {
+      //_choolList = songListModel.list;
+    });
   }
 
   @override
